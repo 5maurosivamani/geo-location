@@ -45,11 +45,18 @@ function success(position) {
   // add the tile layer to the map
   map.addLayer(layer);
 
+  // create a custom icon
+  const customIcon = L.icon({
+    iconUrl: "./marker.png",
+    iconSize: [50, 50],
+  });
+
   // marker options
   const markerOptions = {
     title: "My Location",
     clickable: true,
     draggable: true,
+    icon: customIcon
   };
 
   // create the marker
@@ -57,6 +64,9 @@ function success(position) {
 
   // add the marker to the map
   map.addLayer(marker);
+
+  // bind popup
+  marker.bindPopup("Your current location");
 }
 
 /**
