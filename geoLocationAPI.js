@@ -105,7 +105,7 @@ function success(position) {
 
   const mapOptions = {
     center: [lat, lon],
-    zoom: 15,
+    zoom: 1,
   };
 
   const map = L.map("map", mapOptions);
@@ -115,6 +115,32 @@ function success(position) {
   );
 
   map.addLayer(layer);
+
+  const iconOptions = {
+    iconUrl: "./marker.png",
+    iconSize: [50, 50],
+  };
+
+  const customIcon = L.icon(iconOptions);
+
+  function runForEachFeature(feature, layer) {
+    // implementation
+    layer.bindPopup(feature.properties.name);
+  }
+
+  // store layer
+  const storeLayer = L.geoJSON(storeList, {
+    onEachFeature: runForEachFeature,
+    pointToLayer: function (feature, lat_lon) {
+      return L.marker(lat_lon, {
+        icon: customIcon,
+      });
+    },
+  });
+
+  console.log(storeLayer)
+
+  map.addLayer(storeLayer);
 }
 
 function generateStoreList() {

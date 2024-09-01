@@ -32,4 +32,27 @@ const storeList = [
       address: "FRGH+2XH, Pushpavanam, Tamil Nadu 614809",
     },
   },
+  {
+    type: "Feature",
+    geometry: {
+      type: "Point",
+      coordinates: [10.4473775,79.7983569],
+    },
+    properties: {
+      name: "Sarekasri mini store",
+      address: "CRWP+XH4, Sembodai, Vedaranyam, Tamil Nadu 614809",
+    },
+  },
+  {
+    type: "Feature",
+    geometry: {
+      type: "Point",
+      coordinates: [10.4473775,79.7983569],
+    },
+    properties: {
+      name: "Vathiyar maligai",
+      address: "CRPP+2V9, Thethakudi North, Tamil Nadu 614809",
+    },
+  },
 ];
+
