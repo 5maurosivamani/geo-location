@@ -15,7 +15,7 @@
       crossorigin=""
     />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="flex">
     <div class="w-1/2 lg:w-1/3 xl:w-1/4 bg-gray-800 h-screen overflow-auto">
@@ -30,50 +30,52 @@
           <div class="grid grid-cols-2 gap-2">
             <input
               type="text"
-              name=""
-              id=""
+              id="store-name"
               class="h-8 rounded px-2"
               placeholder="Store name"
             />
             <input
               type="text"
-              name=""
-              id=""
+              id="store-phone"
               class="h-8 rounded px-2"
               placeholder="Phone number"
             />
           </div>
           <textarea
-            name=""
-            id=""
+            id="store-address"
             class="h-20 p-2 rounded w-full"
             placeholder="Address"
           ></textarea>
           <div class="grid grid-cols-2 gap-2">
             <input
               type="text"
-              name=""
-              id=""
+              id="latitude"
               class="h-8 rounded px-2"
               placeholder="Latitute"
             />
             <input
               type="text"
-              name=""
-              id=""
+              id="longitude"
               class="h-8 rounded px-2"
               placeholder="Longitude"
             />
           </div>
 
-          <button type="button" class="bg-green-600 text-white rounded py-2">
+          <button
+            type="button"
+            class="bg-green-600 text-white rounded py-2"
+            id="submit-btn"
+          >
             Create Store
           </button>
         </form>
       </div>
 
       <!-- Display store's -->
-      <ul class="px-4 pb-4 text-white grid grid-cols-1 divide-y divide-gray-600 gap-y-4" id="store-ul-list">
+      <ul
+        class="px-4 pb-4 text-white grid grid-cols-1 divide-y divide-gray-600 gap-y-4"
+        id="store-ul-list"
+      >
         <!-- append the list of store's -->
       </ul>
     </div>

@@ -3,7 +3,7 @@ const storeList = [
     type: "Feature",
     geometry: {
       type: "Point",
-      coordinates: [10.4620187, 79.8163561],
+      coordinates: [79.8163561, 10.4620187],
     },
     properties: {
       name: "Senthur Murugan Stores",
@@ -15,7 +15,7 @@ const storeList = [
     type: "Feature",
     geometry: {
       type: "Point",
-      coordinates: [10.4620187, 79.8163561],
+      coordinates: [79.8163561, 10.4620187],
     },
     properties: {
       name: "Malar Maligai",
@@ -27,7 +27,7 @@ const storeList = [
     type: "Feature",
     geometry: {
       type: "Point",
-      coordinates: [10.4750558, 79.8093772],
+      coordinates: [79.8093772, 10.4750558],
     },
     properties: {
       name: "Saravanan store",
@@ -39,7 +39,7 @@ const storeList = [
     type: "Feature",
     geometry: {
       type: "Point",
-      coordinates: [10.4473775, 79.7983569],
+      coordinates: [79.7983569, 10.4473775],
     },
     properties: {
       name: "Sarekasri mini store",
@@ -51,7 +51,7 @@ const storeList = [
     type: "Feature",
     geometry: {
       type: "Point",
-      coordinates: [10.4473775, 79.7983569],
+      coordinates: [79.7983569, 10.4473775],
     },
     properties: {
       name: "Vathiyar maligai",

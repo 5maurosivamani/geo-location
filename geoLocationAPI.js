@@ -95,29 +95,29 @@ function error(error) {
 /**
  * GeoJSON and leaflet
  */
+class Store {
+  constructor(coordinates, name, address, phone) {
+    this.type = "Feature";
+    this.geometry = {
+      type: "Point",
+      coordinates,
+    };
+    this.properties = {
+      name,
+      address,
+      phone,
+    };
+  }
+}
+
+let map;
+const ul = document.getElementById("store-ul-list");
+
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
-let map;
-
-function success(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
-
-  const mapOptions = {
-    center: [lat, lon],
-    zoom: 1,
-  };
-
-  map = L.map("map", mapOptions);
-
-  const layer = L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  );
-
-  map.addLayer(layer);
-
+function displayMarker() {
   const iconOptions = {
     iconUrl: "./marker.png",
     iconSize: [50, 50],
@@ -140,9 +140,33 @@ function success(position) {
     },
   });
 
-  console.log(storeLayer);
-
   map.addLayer(storeLayer);
+}
+
+function success(position) {
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+
+  const mapOptions = {
+    center: [lat, lng],
+    zoom: 15,
+  };
+
+  map = L.map("map", mapOptions);
+
+  const layer = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  );
+
+  map.addLayer(layer);
+
+  displayMarker();
+
+  map.on("click", function (e) {
+    const { lat, lng } = e.latlng;
+    document.getElementById("latitude").value = lat;
+    document.getElementById("longitude").value = lng;
+  });
 }
 
 // create a custom popup
@@ -154,31 +178,33 @@ function customPopup(store) {
   </div>`;
 }
 
+function createStore(store) {
+  const li = document.createElement("li");
+  const div = document.createElement("div");
+  const a = document.createElement("a");
+  const p = document.createElement("p");
+
+  // li.classList.add("border-b","border-gray-200", "last:border-b-0");
+  div.classList.add("mt-3");
+  a.classList.add("text-green-500", "text-2xl", "font-semibold");
+  p.classList.add("text-gray-200", "text-base");
+
+  a.href = "#";
+  a.addEventListener("click", () => {
+    flyToStore(store);
+  });
+  a.innerText = store.properties.name;
+  p.innerText = store.properties.address;
+
+  div.appendChild(a);
+  div.appendChild(p);
+  li.appendChild(div);
+  ul.appendChild(li);
+}
+
 function generateStoreList() {
-  const ul = document.getElementById("store-ul-list");
-
   storeList.forEach((store) => {
-    const li = document.createElement("li");
-    const div = document.createElement("div");
-    const a = document.createElement("a");
-    const p = document.createElement("p");
-
-    // li.classList.add("border-b","border-gray-200", "last:border-b-0");
-    div.classList.add("mt-3");
-    a.classList.add("text-green-500", "text-2xl", "font-semibold");
-    p.classList.add("text-gray-200", "text-base");
-
-    a.href = "#";
-    a.addEventListener("click", () => {
-      flyToStore(store);
-    });
-    a.innerText = store.properties.name;
-    p.innerText = store.properties.address;
-
-    div.appendChild(a);
-    div.appendChild(p);
-    li.appendChild(div);
-    ul.appendChild(li);
+    createStore(store);
   });
 }
 
@@ -187,9 +213,29 @@ generateStoreList();
 function flyToStore(store) {
   console.log(store);
   const lat = store.geometry.coordinates[0];
-  const lon = store.geometry.coordinates[1];
-  map.flyTo([lon, lat], 14, {
+  const lng = store.geometry.coordinates[1];
+  map.flyTo([lng, lat], 18, {
     // animate: false,
     duration: 2,
   });
 }
+
+const submitButton = document.getElementById("submit-btn");
+
+submitButton.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  const lat = document.getElementById("latitude").value;
+  const lng = document.getElementById("longitude").value;
+  const name = document.getElementById("store-name").value;
+  const address = document.getElementById("store-address").value;
+  const phone = document.getElementById("store-phone").value;
+
+  const latlng = [lng, lat];
+  const newStore = new Store(latlng, name, address, phone);
+
+  storeList.push(newStore);
+  createStore(newStore);
+
+  displayMarker();
+});
