@@ -9,3 +9,8 @@
   background-color: rgba(5, 150, 105, 1);
   border-radius: 10px;
 }
+
+
+.leaflet-popup-content{
+  margin: 0;
+}

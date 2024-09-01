@@ -99,6 +99,8 @@ if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
+let map;
+
 function success(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
@@ -108,7 +110,7 @@ function success(position) {
     zoom: 1,
   };
 
-  const map = L.map("map", mapOptions);
+  map = L.map("map", mapOptions);
 
   const layer = L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -125,7 +127,7 @@ function success(position) {
 
   function runForEachFeature(feature, layer) {
     // implementation
-    layer.bindPopup(feature.properties.name);
+    layer.bindPopup(customPopup(feature));
   }
 
   // store layer
@@ -138,9 +140,18 @@ function success(position) {
     },
   });
 
-  console.log(storeLayer)
+  console.log(storeLayer);
 
   map.addLayer(storeLayer);
+}
+
+// create a custom popup
+function customPopup(store) {
+  return `<div class="pb-4">
+    <h4 class="bg-green-600 p-4 text-white text-xl font-semibold rounded-t-xl">${store.properties.name}</h4>
+    <p class="text-gray-800 text-sm px-4">${store.properties.address}</p>
+    <a class="text-sm px-4" href='tel:${store.properties.phone}' >${store.properties.phone}</a>
+  </div>`;
 }
 
 function generateStoreList() {
@@ -158,6 +169,9 @@ function generateStoreList() {
     p.classList.add("text-gray-200", "text-base");
 
     a.href = "#";
+    a.addEventListener("click", () => {
+      flyToStore(store);
+    });
     a.innerText = store.properties.name;
     p.innerText = store.properties.address;
 
@@ -169,3 +183,13 @@ function generateStoreList() {
 }
 
 generateStoreList();
+
+function flyToStore(store) {
+  console.log(store);
+  const lat = store.geometry.coordinates[0];
+  const lon = store.geometry.coordinates[1];
+  map.flyTo([lon, lat], 14, {
+    // animate: false,
+    duration: 2,
+  });
+}
