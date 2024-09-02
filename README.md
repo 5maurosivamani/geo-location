@@ -128,7 +128,7 @@ Lot's of tile layers provider are available. Here we are using the tile layer fr
   map.addLayer(layer);
 ```
 
-![tile layer](./md_src/tile-layer.png)
+![tile-layer](https://github.com/user-attachments/assets/5bb17928-7d2a-4658-afb6-818a7c054171)
 
 <!-- Display the store with geoJSON -->
 
@@ -202,7 +202,7 @@ function generateStoreList() {
 generateStoreList();
 ```
 
-![display store](./md_src/display-store.png)
+![display-store](https://github.com/user-attachments/assets/6c767c72-b008-48a9-8fe9-a30b40400c8d)
 
 <!-- Display the marker for each store -->
 
@@ -237,7 +237,7 @@ Passing the geoJSON data to Leaflet geoJSON method.
   map.addLayer(storeLayer);
 ```
 
-![display marker](./md_src/display-marker.png)
+![display-marker](https://github.com/user-attachments/assets/d47300c1-1f01-4706-9949-81dbf8cc79c3)
 
 <!-- Custom Popup -->
 
@@ -263,7 +263,7 @@ function customPopup(store) {
 
 now it's look like
 
-![cutom popup](./md_src/custom-popup.png)
+![custom-popup](https://github.com/user-attachments/assets/91b60932-3ebc-48e3-a742-e788cb151913)
 
 <!-- Create a new Store -->
 ### Create a new Store
@@ -278,7 +278,7 @@ When i click on the map i receive the click event and capture current latitude a
   });
 ```
 
-![pick location](./md_src/pick-location.png)
+![pick-location](https://github.com/user-attachments/assets/dd943223-7736-49c5-8ced-c793bc6439e9)
 
 After filling the form when i click the submit button all value get from form and based on the blueprint of the Store Class the new store was created and displayed the store list and marker also pointed on the map.
 
@@ -351,9 +351,11 @@ function displayMarker() {
 ```
 
 ### Final Output
-![new store 1](./md_src/new-store-1.png)
+![new-store-1](https://github.com/user-attachments/assets/2c4910bd-4a84-416b-b920-d0a74140f537)
 
-![new store 2](./md_src/new-store-2.png)
+![new-store-2](https://github.com/user-attachments/assets/747086e5-8a5d-44e6-893d-b86860c39925)
 
 
-###*Thank you! for Reading..*
+<p style="font-size:24px; font-weight:bold; font-style:italic;">
+    Thank you <span style="font-style:normal;font-size:32;">😊</span> for reading!
+</p>
